@@ -1,5 +1,6 @@
 from src.app import app
-from src import functions
+from config import PORT
+import src.controllers.students_controller
+import src.controllers.lab_controller
 
-PORT = 3000
-app.run("0.0.0.0",PORT,debug=True)
+app.run("0.0.0.0", PORT, debug=True)

@@ -1,3 +1,2 @@
 from flask import Flask
-app = Flask("importAPI")
-
+app = Flask("Ranking")

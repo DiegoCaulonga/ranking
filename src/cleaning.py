@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 
+"""
 def title(x):
     url = f"https://api.github.com/repos/ironhack-datalabs/datamad0820/pulls?state=all&page={x}&per_page=100"
     api = requests.get(url)
@@ -19,3 +20,4 @@ f = title(6)
 
 result1 = pd.concat([a,b,c,d,e,f],axis=0,sort=False)
 result1
+"""

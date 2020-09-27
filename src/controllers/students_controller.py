@@ -2,7 +2,8 @@ from src.app import app
 from flask import request, Response
 from src.database import db
 from bson.json_util import dumps
-from src.cleaning import result1 
+from src.helpers.json_response import asJsonResponse
+
 
 @app.route("/student/create/<student_name>")
 def create_student(student_name):
@@ -11,10 +12,9 @@ def create_student(student_name):
     return {"_id": str(result.inserted_id)}
 
 
+@app.route('/student/all')
+def list_students():
+    res = db.students.distinct("user")
+    return (dumps(res))
 
-@app.route("/student/labs/<x>")
-def resultado(x):
-    student_labs = {"student": x,
-                    "labs": result1[result1["student"]==x]["lab"]}
-    result = db.student.insert_many(student_labs)
-    return {"id": str(result.inserted_id)}
+

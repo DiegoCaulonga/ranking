@@ -7,4 +7,11 @@ Posteriormente, creé una carpeta src en la que se encuentran (a parte de files 
 
 ## Controllers
 Los controllers creados permiten generar nuevos students y labs dentro de la BBDD mediante los endpoints: ("/student/create/<nombre student>") y ("/student/create/<nombre lab>") respectivamente, y obtener una lista con todos los students y labs contenidos en la BBDD, mediante los enpoints ("/student/all") y ("/labs/all"). 
+  
+  
+  
+  
+  
+## Trabajo en tiemoo "extra" :)
+Al no querer quedarme atrás en este tema, estoy "mejorando" mi trabajo, con un fin de aprendizaje más que de sacar buena nota en el proyecto. Durante el día de hoy, y apoyándome en proyectos de compañeros, he creado un par de funciones cuya finalidad es obtener de manera limpia, los nombres de los labs, y y de los estudiantes. Estas funciones se encuentran en el archivo "src.functions.py". Posteriormente, se aplican estas funciones a la función "getpull()", ubicada en el archivo "cleaning.py", para obtener de la API de github, la informacion optima que exportar a despues a MongoDB.
 

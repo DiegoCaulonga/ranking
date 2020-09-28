@@ -1,23 +1,31 @@
 import requests
+import json
+import os
+import regex as re
+from dotenv import load_dotenv
 import pandas as pd
+import regex
+from controllers.functions import lab,meme
 
-"""
-def title(x):
-    url = f"https://api.github.com/repos/ironhack-datalabs/datamad0820/pulls?state=all&page={x}&per_page=100"
-    api = requests.get(url)
-    tabla = api.json()
-    norm = pd.json_normalize(tabla)
-    w = norm[["title"]]
-    e = pd.DataFrame(w.title.str.split(" ",1).tolist(),columns=["lab","student"])
-    return e 
 
-a = title(1)
-b = title(2)
-c = title(3)
-d = title(4)
-e = title(5)
-f = title(6)
+def getpulls(num):
+    res=requests.get(f"https://api.github.com/repos/ironhack-datalabs/datamad0820/pulls/{num}")
+    if res.status_code == 404:
+        return 'exit'
+    
+    data = res.json()
+    return {
+        "id":data["number"],
+        "user":data["user"]["login"],
+        "lab": lab(data["title"]),   
+        "meme": meme(data["body"])}
 
-result1 = pd.concat([a,b,c,d,e,f],axis=0,sort=False)
-result1
-"""
+data = []
+for i in range(1000):
+    if getpulls(i)=="exit":
+        pass
+    else:
+        data.append(getpulls(i))
+
+jsn = pd.DataFrame(data)
+jsn.to_json("output/clean.json",orient="records")
